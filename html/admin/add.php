@@ -1,24 +1,24 @@
 <?php
 session_start();
 
-// Connect to the database
+
 include_once("connection.php");
 
-// Check if the user is logged in
+
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
 
-// Check if the form has been submitted
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Get the new values from the form
+    
     $productnaam = $_POST["productnaam"];
     $prijs = $_POST["prijs"];
     $omschrijving = $_POST["omschrijving"];
 
-    // Insert the new menu item into the database
+    
     $sql = "INSERT INTO Menu (Productnaam, Prijs, Omschrijving) VALUES (:productnaam, :prijs, :omschrijving)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':productnaam', $productnaam);
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':omschrijving', $omschrijving);
     $stmt->execute();
 
-    // Redirect to the home page
+    
     header("Location: adminmenu.php");
     exit;
 }

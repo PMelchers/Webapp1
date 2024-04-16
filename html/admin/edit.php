@@ -65,8 +65,11 @@ $result = $stmt->fetch();
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?id=<?php echo $id;?>" method="post">
         <h2>Edit Menu Item</h2>
         <input type="text" name="productnaam" placeholder="Productnaam" value="<?php echo $result['Productnaam'];?>" required>
+
         <input type="number" step="0.01" name="prijs" placeholder="Prijs" value="<?php echo $result['Prijs'];?>" required>
+
         <textarea name="omschrijving" placeholder="Omschrijving"><?php echo $result['Omschrijving'];?></textarea>
+        
         <input type="submit" value="Save Changes">
     </form>
 

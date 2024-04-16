@@ -1,16 +1,16 @@
 <?php
 session_start();
 
-// Connect to the database
+
 include_once("connection.php");
 
-// Check if the user is logged in
+
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
 
-// Check if the search form has been submitted
+
 if (isset($_GET['query'])) {
     $query = '%' . $_GET['query'] . '%';
     $sql = "SELECT * FROM Menu WHERE Productnaam LIKE :query";
@@ -18,12 +18,12 @@ if (isset($_GET['query'])) {
 
     $stmt->bindParam(':query', $query, PDO::PARAM_STR);
     $stmt->execute();
-    //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
     
     } else {
     $sql = "SELECT * FROM Menu";
     $stmt = $pdo->query($sql);
-    //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
     }
 ?>
 
@@ -67,7 +67,7 @@ if (isset($_GET['query'])) {
                 <a href='edit.php?id=<?= $result['id']?>'>Edit</a>
             </div>
             <div class="menu-item-delete">
-                <a href='delete.php?id=<?= $result['id']?>' onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+                <a href='delete.php?id=<?= $result['id']?>'>Delete</a>
             </div>
         </div>
     <?php }?>
