@@ -1,5 +1,5 @@
 <?php
-$host = '172.18.0.2';
+$host = '172.18.0.3';
 $db   = 'Webapp1';
 $user = 'root';
 $pass = 'rootpassword';

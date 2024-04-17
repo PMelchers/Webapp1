@@ -3,12 +3,12 @@ session_start();
 
 include_once("connection.php");
 
-// Check if the user is logged in
+// Controleer of de gebruiker in gelogd is
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
-
+//Zoek productnamen uit de database met BindParam
 if (isset($_GET['query'])) {
     $query = '%' . $_GET['query'] . '%';
     $sql = "SELECT * FROM Menu WHERE Productnaam LIKE :query";

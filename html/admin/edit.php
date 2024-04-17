@@ -4,7 +4,7 @@ session_start();
 
 include_once("connection.php");
 
-
+//Controleer of de gebruiker ingelogd is
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
@@ -13,7 +13,7 @@ if (!isset($_SESSION['username'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-   
+
     $id = $_GET['id'];
 
     
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':prijs', $prijs);
     $stmt->bindParam(':omschrijving', $omschrijving);
     $stmt->bindParam(':id', $id);
-    $stmt->execute();
+    $stmt->execute(); //update de ingevulde gegevens in de database
 
     
     header("Location: adminmenu.php");
@@ -66,10 +66,10 @@ $result = $stmt->fetch();
         <h2>Edit Menu Item</h2>
         <input type="text" name="productnaam" placeholder="Productnaam" value="<?php echo $result['Productnaam'];?>" required>
 
-        <input type="number" step="0.01" name="prijs" placeholder="Prijs" value="<?php echo $result['Prijs'];?>" required>
+        <input type="number" name="prijs" placeholder="Prijs" value="<?php echo $result['Prijs'];?>" required>
 
         <textarea name="omschrijving" placeholder="Omschrijving"><?php echo $result['Omschrijving'];?></textarea>
-        
+
         <input type="submit" value="Save Changes">
     </form>
 
