@@ -12,7 +12,7 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['query'])) {
     $query = '%' . $_GET['query'] . '%';
     $sql = "SELECT * FROM Menu WHERE Productnaam LIKE :query";
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare($sql); //controlleert veiligheid en zet hem klaar
 
     $stmt->bindParam(':query', $query, PDO::PARAM_STR);
     $stmt->execute();

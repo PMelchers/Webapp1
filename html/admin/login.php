@@ -7,10 +7,14 @@ $password = "DikkeBMW";
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") { //controlleert of er een post is
+    
+    if (empty($_POST["username"])) { //controlleert of de username leeg is
+        echo "Username is verplicht";
+    }
 
     
-    if ($_POST["username"] == $username && $_POST["password"] == $password) {
+    if ($_POST["username"] == $username && $_POST["password"] == $password) { //Controlleert of de username en wachtwoord kloppen en stuurt je naar de admin pagina
         
         $_SESSION["username"] = $username;
         header("Location: adminmenu.php");

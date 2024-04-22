@@ -11,13 +11,13 @@ if (!isset($_SESSION['username'])) {
 }
 
 
-if (isset($_GET['query'])) {
-    $query = '%' . $_GET['query'] . '%';
-    $sql = "SELECT * FROM Menu WHERE Productnaam LIKE :query";
-    $stmt = $pdo->prepare($sql);
+if (isset($_GET['query'])) { //controlleerd of de parameter query is gezet
+    $query = '%' . $_GET['query'] . '%'; 
+    $sql = "SELECT * FROM Menu WHERE Productnaam LIKE :query"; //query die de producten zoekt die overeenkomen met de query
+    $stmt = $pdo->prepare($sql); //bereid de query voor
 
-    $stmt->bindParam(':query', $query, PDO::PARAM_STR);
-    $stmt->execute();
+    $stmt->bindParam(':query', $query, PDO::PARAM_STR); //bind de zoekterm aan de query
+    $stmt->execute(); //voert de query uit
     
     
     } else {
@@ -64,10 +64,10 @@ if (isset($_GET['query'])) {
                 <?= $result['Omschrijving']?>
             </div>
             <div class="menu-item-edit">
-                <a href='edit.php?id=<?= $result['id']?>'>Edit</a>
+                <a href='edit.php?id=<?= $result['id']?>'>Edit</a> Hij neemt de vult de variabele ID in $result
             </div>
             <div class="menu-item-delete">
-                <a href='delete.php?id=<?= $result['id']?>'>Delete</a>
+                <a href='delete.php?id=<?= $result['id']?>'>Delete</a> //Hij neemt de vult de variabele ID in $result
             </div>
         </div>
     <?php }?>

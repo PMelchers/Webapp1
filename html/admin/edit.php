@@ -39,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $id = $_GET['id'];
 
 
-$sql = "SELECT * FROM Menu WHERE id = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $id);
-$stmt->execute();
+$sql = "SELECT * FROM Menu WHERE id = :id"; //zoek in de database naar de id
+$stmt = $pdo->prepare($sql);  //controleerd of wat jij opzoekt in de zoekbalk veilig is
+$stmt->bindParam(':id', $id); //bind de door jou net ingevulde informatie aan de id in de database
+$stmt->execute(); //voert de query uit
 $result = $stmt->fetch();
 
 
@@ -62,7 +62,7 @@ $result = $stmt->fetch();
 </header>
 <body>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?id=<?php echo $id;?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?id=<?php echo $id;?>" method="post"> // stuurt de ingevulde informatie naar de database
         <h2>Edit Menu Item</h2>
         <input type="text" name="productnaam" placeholder="Productnaam" value="<?php echo $result['Productnaam'];?>" required>
 
